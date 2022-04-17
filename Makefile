@@ -33,24 +33,15 @@ lib:
 	make -C sources/my_printf/
 
 clean:
-	make clean -C tests/
 	make clean -C sources/my_printf/
-	rm -f $(OBJ) $(OBJ:.o=.gcno) $(OBJ:.o=.gcda)
+	rm -f $(OBJ)
 
 fclean: clean
-	make fclean -C tests/
 	make fclean -C sources/my_printf/
 	rm -f $(NAME)
 
 re: fclean all
 
 cc: re clean
-
-unit_tests: CFLAGS += --coverage
-unit_tests: fclean all
-	make -C tests/
-
-tests_run: unit_tests
-	./tests/tests
 
 .PHONY: all clean fclean re cc lib
